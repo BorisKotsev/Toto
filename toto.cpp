@@ -18,6 +18,7 @@ struct int6
 
 int maxCirculation = 0;
 int maxNumbers = 0;
+int numbers = 0;
 int myNum;
 
 vector<int6> totoNumbers;
@@ -47,7 +48,14 @@ void loadData(string configFile)
     {
         int6 _num;
 
-        stream >> _num.first >> _num.second >> _num.third >> _num.fourth >> _num.fifth >> _num.sixth;
+        if(numbers == 6)
+        {
+            stream >> _num.first >> _num.second >> _num.third >> _num.fourth >> _num.fifth >> _num.sixth;
+        }
+        else if(numbers == 5)
+        {
+            stream >> _num.first >> _num.second >> _num.third >> _num.fourth >> _num.fifth;
+        }
 
         totoNumbers.push_back(_num);
 
@@ -269,6 +277,12 @@ void printInConsole(string configFile)
     cout << "Your number is: ";
     cin >> myNum;
 
+    while(myNum < 1 || myNum > 49)
+    {
+        cout << "Your number is: ";
+        cin >> myNum;
+    }
+
     checkStats(myNum);
     checkForDouble(myNum);
 }
@@ -283,23 +297,29 @@ int main()
     if(configFile == "toto49")
     {
         maxNumbers = 49;
+        numbers = 6;
     }
     else if(configFile == "toto42")
     {
         maxNumbers = 42;
+        numbers = 6;
     }
     else if(configFile == "toto35")
     {
         maxNumbers = 35;
+        numbers = 5;
     }
     else
     {
         configFile = "toto49";
         maxNumbers = 49;
+        numbers = 6;
     }
 
     printInConsole(configFile);
     printInFile(myNum, configFile);
+
+    while(true);
 
     return 0;
 }
