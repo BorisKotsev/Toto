@@ -82,7 +82,7 @@ void print()
             cout << currCirculation << ' ';
         }
 
-        for (int j = 1; j <= maxCirculation - 1; j++)
+        for (int j = 1; j <= maxCirculation; j++)
         {
             bool found = false;
 
@@ -163,7 +163,7 @@ void checkStats(int myNumber)
     cout << endl;
 }
 
-void printCurrCirculation(vector<int6> thisCirculation)
+void printCurrCirculation(vector<int6>& thisCirculation)
 {
     cout << endl;
 
@@ -171,12 +171,12 @@ void printCurrCirculation(vector<int6> thisCirculation)
     {
         cout << "Circulation " << i + 1 << ":" << endl;
 
-        cout << "First number: " << totoNumbers[i].first << endl;
-        cout << "Second number: " << totoNumbers[i].second << endl;
-        cout << "Third number: " << totoNumbers[i].third << endl;
-        cout << "Fourth number: " << totoNumbers[i].fourth << endl;
-        cout << "Fifth number: " << totoNumbers[i].fifth << endl;
-        cout << "Sixth number: " << totoNumbers[i].sixth << endl << endl;
+        cout << "First number: " << thisCirculation[i].first << endl;
+        cout << "Second number: " << thisCirculation[i].second << endl;
+        cout << "Third number: " << thisCirculation[i].third << endl;
+        cout << "Fourth number: " << thisCirculation[i].fourth << endl;
+        cout << "Fifth number: " << thisCirculation[i].fifth << endl;
+        cout << "Sixth number: " << thisCirculation[i].sixth << endl << endl;
     }
 }
 
@@ -191,6 +191,7 @@ void fillCurrCirculation(int myNumber, vector<int6>& thisCirculation)
             thisCirculation.push_back(totoNumbers[i]);
         }
     }
+
 }
 
 void checkForDouble(int myNumber)
@@ -198,40 +199,41 @@ void checkForDouble(int myNumber)
     vector<int6> thisCirculation;
 
     fillCurrCirculation(myNumber, thisCirculation);
-    ///printCurrCirculation(thisCirculation);
+    /// printCurrCirculation(thisCirculation);
+
     cout << endl;
 
     vector<int2> doubles;
 
     for(int i = 0; i < thisCirculation.size(); i ++)
     {
-        if (totoNumbers[i].first - totoNumbers[i].second == -1)
+        if (thisCirculation[i].first - thisCirculation[i].second == -1)
         {
-            int2 tmp = {totoNumbers[i].first, totoNumbers[i].second};
+            int2 tmp = {thisCirculation[i].first, thisCirculation[i].second};
             doubles.push_back(tmp);
         }
 
-        if (totoNumbers[i].second - totoNumbers[i].third == -1)
+        if (thisCirculation[i].second - thisCirculation[i].third == -1)
         {
-            int2 tmp = {totoNumbers[i].second, totoNumbers[i].third};
+            int2 tmp = {thisCirculation[i].second, thisCirculation[i].third};
             doubles.push_back(tmp);
         }
 
-        if (totoNumbers[i].third - totoNumbers[i].fourth == -1)
+        if (thisCirculation[i].third - thisCirculation[i].fourth == -1)
         {
-            int2 tmp = {totoNumbers[i].third, totoNumbers[i].fourth};
+            int2 tmp = {thisCirculation[i].third, thisCirculation[i].fourth};
             doubles.push_back(tmp);
         }
 
-        if (totoNumbers[i].fourth - totoNumbers[i].fifth == -1)
+        if (thisCirculation[i].fourth - thisCirculation[i].fifth == -1)
         {
-            int2 tmp = {totoNumbers[i].fourth, totoNumbers[i].fifth};
+            int2 tmp = {thisCirculation[i].fourth, thisCirculation[i].fifth};
             doubles.push_back(tmp);
         }
 
-        if (totoNumbers[i].fifth - totoNumbers[i].sixth == -1)
+        if (thisCirculation[i].fifth - thisCirculation[i].sixth == -1)
         {
-            int2 tmp = {totoNumbers[i].fifth, totoNumbers[i].sixth};
+            int2 tmp = {thisCirculation[i].fifth, thisCirculation[i].sixth};
             doubles.push_back(tmp);
         }
     }
