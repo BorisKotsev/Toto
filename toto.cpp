@@ -191,7 +191,43 @@ void fillCurrCirculation(int myNumber, vector<int6>& thisCirculation)
             thisCirculation.push_back(totoNumbers[i]);
         }
     }
+}
 
+void fillNextCirculation(int myNumber, vector<int6>& thisCirculation)
+{
+
+    for(int i = 0; i < maxCirculation; i ++)
+    {
+        if(myNumber == totoNumbers[i].first || myNumber == totoNumbers[i].second ||
+           myNumber == totoNumbers[i].third || myNumber == totoNumbers[i].fourth ||
+           myNumber == totoNumbers[i].fifth || myNumber == totoNumbers[i].sixth)
+        {
+            thisCirculation.push_back(totoNumbers[i + 1]);
+        }
+    }
+
+    int occurrences[maxNumbers] = {0};
+
+    for(int i = 0; i < thisCirculation.size(); i ++)
+    {
+        occurrences[thisCirculation[i].first - 1] ++;
+        occurrences[thisCirculation[i].second - 1] ++;
+        occurrences[thisCirculation[i].third - 1] ++;
+        occurrences[thisCirculation[i].fourth - 1] ++;
+        occurrences[thisCirculation[i].fifth - 1] ++;
+        occurrences[thisCirculation[i].sixth - 1] ++;
+    }
+
+    for(int i = 0; i < maxNumbers; i ++)
+    {
+        cout  << i + 1 << " : " << occurrences[i] << "      ";
+
+        if(i % 5 == 4)
+        {
+            cout << endl;
+        }
+    }
+    cout << endl;
 }
 
 void checkForDouble(int myNumber)
@@ -252,6 +288,19 @@ void checkForDouble(int myNumber)
 
         cout << val.first << " & " << val.second << " -> " << count << endl;
     }
+
+    cout << endl;
+}
+
+void checkNextCirculation(int myNumber)
+{
+    cout << "After " << myNumber << endl;
+
+    vector<int6> thisCirculation;
+
+    fillNextCirculation(myNumber, thisCirculation);
+
+    cout << endl;
 }
 
 void printInFile(int myNum, string configFile)
@@ -266,6 +315,13 @@ void printInFile(int myNum, string configFile)
     cout << "The stats for " << myNum << " are:" << endl;
     checkStats(myNum);
     checkForDouble(myNum);
+
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].first);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].second);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].third);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].fourth);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].fifth);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].sixth);
 
     cout.rdbuf(coutBuffer);
     outputFile.close();
@@ -287,6 +343,13 @@ void printInConsole(string configFile)
 
     checkStats(myNum);
     checkForDouble(myNum);
+
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].first);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].second);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].third);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].fourth);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].fifth);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].sixth);
 }
 
 int main()
@@ -313,8 +376,8 @@ int main()
     }
     else
     {
-        configFile = "toto49";
-        maxNumbers = 49;
+        configFile = "toto42";
+        maxNumbers = 42;
         numbers = 6;
     }
 
