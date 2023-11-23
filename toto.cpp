@@ -303,6 +303,16 @@ void checkNextCirculation(int myNumber)
     cout << endl;
 }
 
+void checkNextCirculation()
+{
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].first);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].second);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].third);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].fourth);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].fifth);
+    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].sixth);
+}
+
 void printInFile(int myNum, string configFile)
 {
     ofstream outputFile("files\\output.txt");
@@ -316,12 +326,7 @@ void printInFile(int myNum, string configFile)
     checkStats(myNum);
     checkForDouble(myNum);
 
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].first);
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].second);
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].third);
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].fourth);
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].fifth);
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].sixth);
+    checkNextCirculation();
 
     cout.rdbuf(coutBuffer);
     outputFile.close();
@@ -335,21 +340,10 @@ void printInConsole(string configFile)
     cout << "Your number is: ";
     cin >> myNum;
 
-    while(myNum < 1 || myNum > 49)
-    {
-        cout << "Your number is: ";
-        cin >> myNum;
-    }
-
     checkStats(myNum);
     checkForDouble(myNum);
 
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].first);
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].second);
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].third);
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].fourth);
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].fifth);
-    checkNextCirculation(totoNumbers[totoNumbers.size() - 1].sixth);
+    checkNextCirculation();
 }
 
 int main()
